@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  kerberos-sidecar:
+    image: kerberos-sidecar
+    hostname: kerberos-sidecar
+    environment:
+      - TZ=Europe/Istanbul
+      - SECRETS=/secrets
+      - KEYTAB=client.keytab
+      - PRINCIPAL=client@HADOOP.COM
+      - VOLUME=/kerberos-sidecar
+      - KRB5_CONFIG=/kerberos-sidecar/krb5.conf
+      - KRB5CCNAME=FILE:/kerberos-sidecar/krb5cc
+      - REKINIT_PERIOD=28800
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - sidecar-volume:/kerberos-sidecar:rwx
+    secrets:
+      - source: client-keytab
+        target: /secrets/client.keytab
+volumes:
+  sidecar-volume:
+    name: kerberos-sidecar
+secrets:
+  client-keytab:
+    external: true
+    name: client.keytab
