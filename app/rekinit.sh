@@ -13,6 +13,7 @@ while true; do
     echo "kinit is successfull. Sleeping for $REKINIT_PERIOD seconds."
   else
     echo "kinit is exited with error. result code: $result"
+    exit 1
   fi
 
   sleep "$REKINIT_PERIOD"
