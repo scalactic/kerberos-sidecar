@@ -1,5 +1,6 @@
 ### What is sidecar container ?
 [kerberos-sidecar-container](https://www.openshift.com/blog/kerberos-sidecar-container)
+Helping containers to reach kerberized services without calling kinit.
 
 ### Creating example secret
 ``` docker secret create client.keytab [path_to_the_keytab]/client.keytab```
