@@ -34,7 +34,7 @@ volumes:
     name: kerberos-sidecar
 ```
 
-### kubernetes usage
+### how to implement it in kubernetes ?
 Same strategy can be applied in kubernetes using kubernetes secrets. Kubernetes secrets can be updated during runtime. A pod who is mounting the secret to itself will get the updated secret without restart. But the secret type should be a file.
 
 A simple kerberos-auth pod in kubernetes can be implemented in a python container using [kubernetes](https://pypi.org/project/kubernetes/) library. The secret which is containing kerberos ticket cache and krb5.conf should be updated during runtime using [kubernetes](https://pypi.org/project/kubernetes/). 
